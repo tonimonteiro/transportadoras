@@ -1,0 +1,112 @@
+<?php echo $this->doctype(); ?>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<?php
+    echo $this->headTitle('Sim Tecnologia - Soluções Inteligentes!');
+
+    echo $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge');
+
+    echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+              ->prependStylesheet($this->basePath() . '/css/theme-admin.css')
+              ->prependStylesheet($this->basePath() . '/css/datatables/dataTables.bootstrap.css')
+              ->prependStylesheet($this->basePath() . '/vendor/font-awesome/css/font-awesome.min.css')
+              ->prependStylesheet($this->basePath() . '/vendor/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')
+              ->prependStylesheet($this->basePath() . '/vendor/twitter-bootstrap/css/bootstrap.min.css')
+              ->prependStylesheet($this->basePath() . '/css/fonts.css');
+
+    echo $this->headScript()
+              ->prependFile($this->basePath() . '/js/app.js', 'text/javascript')
+              ->prependFile($this->basePath() . '/vendor/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9'))
+              ->prependFile($this->basePath() . '/vendor/html5shiv.js', 'text/javascript', array('conditional' => 'lt IE 9'))
+              ->prependFile($this->basePath() . '/vendor/jquery-mask/jquery.mask.min.js')
+              ->prependFile($this->basePath() . '/vendor/twitter-bootstrap/js/bootstrap.min.js')
+              ->prependFile($this->basePath() . '/vendor/moment/moment.js')
+              ->prependFile($this->basePath() . '/vendor/jquery.min.js');
+?>
+</head>
+<body>
+    <?php $session = $this->UserIdentity($this->config()['params']['session']['administrator']); ?>
+    <body class="skin-black">
+        <!-- header logo: style can be found in header.less -->
+        <header class="header">
+            <a href="/" class="logo">
+                <img src="/img/administrator-logo.png" border="0">
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-right">
+                    <div class="dropdown">
+                        <a data-toggle="dropdown" href="#">
+                            <span></span>
+                            <?php echo $session->getName(); ?> - <?php echo $session->getRole()->getName(); ?>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li><a href="<?php echo $this->url('simauth-logout') ?>">Sair</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="wrapper row-offcanvas row-offcanvas-left content-background">
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="left-side sidebar-offcanvas">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <?php
+                    echo $this->navigation('navigation')
+                            ->menu()
+                            ->setUlClass('sidebar-menu')
+                            ->setMaxDepth(1)
+                            ->setAcl($this->acl)
+                            ->setRole($session->getRole()->getName())
+                            ->setPartial('partials/navigation.phtml')
+                            ;
+                    ?>
+                </section>
+            </aside>
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                   <h1>
+                   <?php
+                    $page = $this->navigation()->findOneBy('active', 1);
+                    $label = $this->navigation()->findBy('controller', $page->getController());
+                    echo $label->getLabel();
+                    ?>
+                    </h1>
+                    <?php echo $this->navigation()->breadcrumbs()->setMinDepth(0)->setRenderInvisible(true)->setPartial('partials/breadcrumb.phtml'); ?>
+                </section>
+                <!-- Ini:Flash Messages -->
+                <?php foreach ($this->flashMessages(true) as $namespace => $messages) : ?>
+                    <?php if (count($messages)) : ?>
+                        <?php foreach ($messages as $message) : ?>
+                            <div class="flashMessages alert alert-<?php echo $namespace; ?> alert-dismissible fadeOut" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+                                <p class="text-<?php echo $namespace; ?>"><?php echo $message; ?></p>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                <!-- End:Flash Messages -->
+                <!-- Main content -->
+                <section class="content">
+                    <?php echo $this->content; ?>
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+        <?php echo $this->inlineScript(); ?>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<?php echo $this->doctype(); ?>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<?php
+    echo $this->headTitle('Sim Tecnologia - Soluções Inteligentes!');
+
+    echo $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge');
+
+    echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+              ->prependStylesheet($this->basePath() . '/css/login-admin.css')
+              ->prependStylesheet($this->basePath() . '/css/datatables/dataTables.bootstrap.css')
+              ->prependStylesheet($this->basePath() . '/vendor/font-awesome/css/font-awesome.min.css')
+              ->prependStylesheet($this->basePath() . '/vendor/twitter-bootstrap/css/bootstrap.min.css')
+              ->prependStylesheet($this->basePath() . '/css/fonts.css');
+
+    echo $this->headScript()
+              ->prependFile($this->basePath() . '/js/app.js', 'text/javascript')
+              ->prependFile($this->basePath() . '/vendor/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9'))
+              ->prependFile($this->basePath() . '/vendor/html5shiv.js', 'text/javascript', array('conditional' => 'lt IE 9'))
+              ->prependFile($this->basePath() . '/vendor/jquery-mask/jquery.mask.min.js')
+              ->prependFile($this->basePath() . '/vendor/twitter-bootstrap/js/bootstrap.min.js')
+              ->prependFile($this->basePath() . '/vendor/jquery-ui-1.10.3.min.js')
+              ->prependFile($this->basePath() . '/vendor/jquery.min.js');
+?>
+</head>
+<body class="login-page">
+    <?php echo $this->content; ?>
+</body>
+</html>

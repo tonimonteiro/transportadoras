@@ -1,0 +1,41 @@
+                <div class="row">
+                    <?php
+                        $img100 = $this->Ads()->getListMedia(10, 4, null);
+                        $img100 = $img100[0];
+                    ?>
+                    <img src="<?php echo $img100['mediaFile']; ?>" class="img-responsive img100" alt="<?php echo $img100['name']; ?>">
+                </div>
+                <div class="row content">
+                    <div class="col-md-11">
+                        <div class="row">
+                            <ol class="breadcrumb">
+                                <li><a href="/">Página Inicial</a></li>
+                                <li class="active">Palavra-chave</li>
+                            </ol>
+                        </div>
+                        <div class="row">
+                            <h1 class="title">Resultado da busca</h1>
+                        </div>
+                        <?php if (! $keyword): ?>
+                        <?php echo $this->partial('partials/search-noregister.phtml', array('data' => $this->data, 'keyword' =>  $keyword)); ?>
+                        <?php else: ?>
+                            <?php echo $this->partial('partials/search-return.phtml', array('data' => $this->data, 'keyword' =>  $keyword)); ?>
+                            <div class="row content-list">
+                            <?php foreach($this->data as $entity): ?>
+                                <dl class="search">
+                                    <dt>
+                                        <a href="<?php echo $entity->getUrl(); ?>">
+                                            <h4><?php echo $entity->getTitle(); ?></h4>
+                                        </a>
+                                    </dt>
+                                    <dd class="link text-muted"><?php echo $this->basePath() . $entity->getUrl(); ?></dd>
+                                    <dd class="description">
+                                        <?php echo strip_tags(nl2br(substr($entity->getContent(), 0, strpos($entity->getContent(), chr(10)) -1))); ?>
+                                    </dd>
+                                </dl>
+                            <?php endforeach; ?>
+                            </div>
+                            <?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator-site'); ?>
+                        <?php endif;?>
+                    </div>
+                </div>

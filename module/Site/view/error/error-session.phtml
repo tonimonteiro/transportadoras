@@ -1,0 +1,27 @@
+<div class="container home">
+	<div class="row">
+		<div class="col-md-9">
+			<div class="row">
+				<div class="col-md-12">
+                    <div class="page-header page-header-orange page-header-margin">
+                        <h3>Ops!</h3>
+                    </div>
+                    <h4 class="content-title strong"></h4>
+                    <!-- Ini:Flash Messages -->
+                    <?php foreach ($this->flashMessages(true) as $namespace => $messages) : ?>
+                        <?php if (count($messages)) : ?>
+                            <?php foreach ($messages as $message) : ?>
+                            <div class="alert alert-<?php echo $namespace; ?> alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+                                <p class="text-<?php echo $namespace; ?>"><?php echo $message; ?></p>
+                            </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    <!-- End:Flash Messages -->
+                    <p><a href="/">Página inicial</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

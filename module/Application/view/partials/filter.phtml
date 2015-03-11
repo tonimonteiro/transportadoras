@@ -1,0 +1,65 @@
+<?php
+$default = array();
+$session = $this->config('SessionAdminSearch')->getArrayCopy();
+if (! empty($session[$controllerName . 'index'])) {
+	$default = unserialize($session[$controllerName . 'index']);
+}
+?>
+<?php if (!empty($searchFilters)): ?>
+<div class="col-md-9 no-padding filter">
+    <div class="form-inline pull-right">
+        <form method="post" action="<?php echo $this->url($routeName, array('controller' => $controllerName, 'action'=>'index')); ?>" role="form">
+        <?php if (! empty($searchFilters['list'])): ?>
+            <?php foreach($searchFilters['list'] as $field => $options) : ?>
+            <div class="form-group">
+                <select class="form-control input-sm" name="filter[<?php echo $field; ?>]">
+                <?php if (! empty($options['label'])) : ?>
+                    <option value=""><?php echo $options['label']; ?></option>
+                <?php endif; ?>
+                <?php foreach($options['option'] as $value => $name) : ?>
+                    <?php
+                        $selected = '';
+                        if (! empty($default['filter'][$field])) {
+                        	if ($default['filter'][$field] == $value) {
+                        		$selected = 'selected';
+                        	}
+                        }
+                    ?>
+                    <option value="<?php echo $value; ?>" <?php echo $selected; ?>><?php echo $name; ?></option>
+                <?php endforeach; ?>
+                </select>
+            </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        <?php if (! empty($searchFilters['keyword'])): ?>
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" name="keyword-search" class="form-control input-sm" placeholder="Palavras-chave" value="<?php echo (! empty($default['keyword-search']) ? $default['keyword-search'] : ''); ?>">
+                <div class="input-group-btn">
+                    <select name="keyword-field" class="btn form-control input-sm">
+                    <?php foreach($searchFilters['keyword'] as $value => $name) : ?>
+                        <?php
+                            $selected = '';
+                            if (! empty($default['keyword-field'])) {
+                            	if ($default['keyword-field'] == $value) {
+                            		$selected = 'selected';
+                            	}
+                            }
+                        ?>
+                        <option value="<?php echo $value; ?>" <?php echo $selected; ?>><?php echo $name; ?></option>
+                    <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <button type="submit" class="btn btn-default btn-sm" id="btn-submit" value="">
+            <i class="glyphicon glyphicon-search"></i> Buscar
+        </button>
+        <a class="btn btn-default btn-sm" id="btn-clear" value="" href="<?php echo $this->url($routeName, array('controller' => $controllerName, 'action'=>'unset-search')); ?>">
+            <i class="fa fa-eraser"></i> Limpar
+        </a>
+        </form>
+    </div>
+</div>
+<?php endif; ?>

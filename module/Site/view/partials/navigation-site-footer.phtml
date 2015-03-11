@@ -1,0 +1,40 @@
+<?php
+/* @var $container Zend\Navigation\Navigation */
+$container = $this->container;
+?>
+<?php
+    $caret = false;
+    $getUlClass = explode(' ', $this->navigation()->menu()->getUlClass());
+    if (end($getUlClass) == 'icon') {
+    	$caret = true;
+    }
+?>
+<ul class="nav navbar-nav">
+    <?php foreach ($container as $page): ?>
+        <?php if (!$this->navigation()->accept($page)) continue; ?>
+        <?php /* @var $page Zend\Navigation\Page\Mvc */ ?>
+        <?php $hasChildren = $page->hasPages() ?>
+        <?php if (!$hasChildren): ?>
+            <li <?php if ($page->isActive()) echo ' class="active"' ?>>
+                <a class="nav-header" href="<?php echo $page->getHref() ?>" <?php if ($page->getTarget() != ""): ?> target="<?php echo $page->getTarget(); ?>" <?php endif; ?>>
+                    <?php if ($page->get("icon") !== ""): ?>
+                        <span class="<?php echo $page->get("icon"); ?>"></span>
+                    <?php endif; ?>
+                    <?php echo $page->getLabel() ?>
+                </a>
+            </li>
+        <?php else: ?>
+            <li class="dropdown<?php if ($page->isActive(true)) echo ' active' ?>">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <?php if (! empty($page->get("icon"))): ?>
+                        <span class="<?php echo $page->get("icon"); ?>"></span>
+                    <?php endif; ?>
+                    <?php echo $page->getLabel() ?>
+                    <?php if ($caret === true) echo '<b class="caret"></b>'; ?>
+                </a>
+                <?php echo $this->SubNavigation($page); ?>
+            </li>
+        <?php endif ?>
+    <?php endforeach ?>
+</ul>
+

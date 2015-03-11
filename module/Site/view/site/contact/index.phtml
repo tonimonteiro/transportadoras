@@ -1,0 +1,106 @@
+<?php
+    $this->inlineScript()->appendFile($this->basePath() . '/js/form/fieldset.js')
+                         ->appendFile($this->basePath() . '/js/site.js');
+?>
+
+<div class="row">
+    <?php
+        $img100 = $this->Ads()->getListMedia(10, 4, null);
+        $img100 = $img100[0];
+    ?>
+    <img src="<?php echo $img100['mediaFile']; ?>" class="img-responsive img100" alt="<?php echo $img100['name']; ?>">
+</div>
+<?php
+    $branch = $breadcrumb;
+    $colMd  = '12';
+?>
+<div class="row content">
+    <?php if (! empty($nameGroup)) : ?>
+        <div class="col-md-3 nav4">
+            <?php
+            $colMd = '9';
+            $branchActive = array_shift($branch);
+            $nav4 = $this->navigation($nameGroup)->findOneByLabel($branchActive['label']);
+            echo $this->navigation()->menu()->setUlClass('nav nav-pills nav-stacked icon')->renderPartial($nav4, 'partials/navigation-site-side.phtml');
+            ?>
+        </div>
+    <?php endif; ?>
+    <div class="col-md-<?php echo $colMd; ?>">
+        <div class="row">
+        <?php echo $this->partial('partials/breadcrumb_site.phtml', array('breadcrumb' => $breadcrumb));?>
+        </div>
+        <div class="row">
+            <h1 class="title">
+                <?php echo $pageName; ?>
+            </h1>
+        </div>
+        <div class="row content-text">
+            <?php if ($form != '' ) : ?>
+            <?php
+            $form = $this->form;
+            $form->setAttribute('action', $this->url('contact'));
+            $form->prepare();
+            ?>
+            <?php echo $this->form()->openTag($form); ?>
+            <div class="row">
+                <div class="col-md-12">
+                	<div class="form-group">
+                	   <div class="bs-callout bs-callout-success">
+                	       <p>Os campos sublinhados são obrigatórios!</p>
+                		</div>
+                	</div>
+                </div>
+            </div>
+            <div class="form-group">
+            	<?php echo $this->formRow($form->get('Nome')); ?>
+            </div>
+            <div class="form-group">
+            	<?php echo $this->formRow($form->get('Assunto')); ?>
+            </div>
+            <div class="form-group">
+            	<?php echo $this->formRow($form->get('Email')); ?>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                	<div class="col-xs-12 col-sm-4 col-md-4">
+                		<div class="form-group">
+                			<?php echo $this->formRow($form->get('Telefone')); ?>
+                		</div>
+                	</div>
+                	<div class="col-xs-6 col-sm-4 col-md-4">
+                		<div class="form-group">
+                			<?php echo $this->formRow($form->get('Cidade')); ?>
+                		</div>
+                	</div>
+                	<div class="col-xs-6 col-sm-4 col-md-4">
+                		<div class="form-group">
+                			<?php echo $this->formRow($form->get('Estado')); ?>
+                		</div>
+                	</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <?php echo $this->formRow($form->get('Mensagem')); ?>
+            </div>
+            <div class="form-group">
+                <?php echo $this->formRow($form->get('security')); ?>
+            	<?php echo $this->formRow($form->get('send')); ?>
+            </div>
+            <?php echo $this->form()->closeTag(); ?>
+            <?php else : ?>
+            <p><strong>Sua mensagem foi enviada com sucesso!</strong></p>
+            <p>Nossa atendimento entrará em contato em breve!</p>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>

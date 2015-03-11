@@ -1,0 +1,26 @@
+<?php
+$totalItemCount = $this->data->getTotalItemCount();
+$currentItemCount = $this->data->getCurrentItemCount();
+$currentPageNumber = $this->data->getCurrentPageNumber();
+$firstItemCurrent = ($this->data->getItemCountPerPage()*($currentPageNumber-1));
+?>
+<div class="row">
+    <div class="alert alert-info" role="alert">
+        <p><strong>Buscando por: <?php echo $keyword; ?></strong></p>
+        <p>
+        <?php
+        if ($totalItemCount == 0) {
+            echo 'Sem resultados para a sua busca!';
+        } else {
+            echo 'Exibindo de ' . ($firstItemCurrent+1) . '  a ' . ($firstItemCurrent+$currentItemCount) . ' de ' . $totalItemCount;
+            if ($totalItemCount == 1) {
+                echo ' registro.';
+            } else {
+                echo ' registros.';
+            }
+        }
+        ?>
+        </p>
+    </div>
+</div>
+

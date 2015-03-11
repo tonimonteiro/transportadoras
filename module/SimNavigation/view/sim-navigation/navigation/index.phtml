@@ -1,0 +1,89 @@
+<?php
+    echo $this->inlineScript()
+                              ->appendFile($this->basePath() . '/vendor/twitter-bootstrap/js/bootbox.min.js')
+                              ->appendFile($this->basePath() . '/js/form/checkbox-all.js');
+
+?>
+<?php
+$page = $this->navigation('navigation')->findOneBy('active', true);
+$session = $this->UserIdentity($this->config()['params']['session']['administrator']);
+$isAllowedNew = $this->layout()->acl->isAllowed($session->getRole()->getName(), $page->getResource(), 'new');
+$isAllowedEdit = $this->layout()->acl->isAllowed($session->getRole()->getName(), $page->getResource(), 'edit');
+$isAllowedRemove = $this->layout()->acl->isAllowed($session->getRole()->getName(), $page->getResource(), 'removeResponse');
+
+$routeName = $this->RouteMatch()->getRouteName();
+$controllerName = $this->RouteMatch()->getControllerName();
+?>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <!-- header / tools -->
+            <div class="box-header">
+                <div class="box-tools">
+                    <div class="col-md-3 no-padding">
+                        <?php if ( !empty($isAllowedNew) ) :?>
+                        <a class="btn btn-success btn-sm" href="<?php echo $this->url($routeName, array('controller' => $controllerName, 'action' => 'new')); ?>">
+                            <i class="fa fa-file"></i> Novo
+                        </a>
+                        <?php endif; ?>
+                        <?php if ( !empty($isAllowedRemove) ) :?>
+                        <?php $removeAction = $this->url($routeName,array('controller' => $controllerName, 'action'=>'removeResponse')); ?>
+                        <button type="button" class="btn btn-danger btn-sm" id="btn-remove" disabled="disabled" value="<?php echo $removeAction; ?>">
+                            <i class="fa fa-times-circle"></i> Excluir
+                        </button>
+                        <?php endif; ?>
+                    </div>
+                    <!-- filters -->
+                    <?php echo $this->partial('partials/filter.phtml', array('routeName' => $routeName, 'controllerName' => $controllerName, 'searchFilters' => $searchFilters)); ?>
+                </div>
+            </div>
+            <!-- body -->
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover dataTable">
+                    <thead>
+                        <tr role="row">
+                            <th width="10"><input type="checkbox" class="checkbox" id="check-all"></th>
+                            <th>Label</th>
+                            <th>Uri</th>
+                            <th>Ordem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    /* @var $data Zend\Paginator\Paginator */
+                    $data = $this->data;
+                    ?>
+                    <?php $iterator = $data->getCurrentItems(); ?>
+                    <?php while($iterator->valid()): ?>
+                    <?php $row = $iterator->current(); ?>
+                    <tr>
+                        <td><input type="checkbox" class="checkbox cbid" name="id[]" value="<?php echo $row['id']; ?>"></td>
+                        <td>
+                            <?php if ( !empty($isAllowedEdit) ) :?>
+                            <a href="<?php echo $this->url($routeName, array('controller' => $controllerName, 'action'=>'edit','id'=>$row['id']));?>">
+                                <?php echo $row['label']; ?>
+                            </a>
+                            <?php endif; ?>
+                        </td>
+                        <td><?php echo $row['uri']; ?></td>
+                        <td><?php echo $row['numberOrder']; ?></td>
+                    </tr>
+                    <?php $iterator->next(); ?>
+                    <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
+            <?php echo $this->partial('partials/DataTableNoRegister.phtml', array('data' => $this->data)); ?>
+            <div class="box box-footer">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="dataTables_info"><?php echo $this->partial('partials/DataTableInfo.phtml', array('data' => $this->data)); ?></div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="dataTables_paginate paging_bootstrap"><?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator'); ?></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

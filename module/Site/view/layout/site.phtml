@@ -1,0 +1,145 @@
+<?php echo $this->doctype(); ?>
+<html lang="en">
+<head>
+<script>
+if(navigator.userAgent.match(/MSIE [6-8]{1,}/) != null) {
+    document.location="browser.html";
+}
+</script>
+<meta charset="utf-8">
+<?php
+    echo $this->headTitle('Sim Tecnologia - Soluções Inteligentes!');
+
+    echo $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge');
+
+    echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+              //->prependStylesheet($this->basePath() . '/vendor/nailthumb/jquery.nailthumb.1.1.min.css')
+              //->prependStylesheet($this->basePath() . '/css/theme-site-menu.css')
+              ->prependStylesheet($this->basePath() . '/css/theme-site.css')
+              ->prependStylesheet($this->basePath() . '/vendor/rs-plugin/css/settings.css')
+              ->prependStylesheet($this->basePath() . '/css/animate.css')
+              //->prependStylesheet($this->basePath() . '/css/theme-site-responsive.css')
+              ->prependStylesheet($this->basePath() . '/vendor/twitter-bootstrap/css/bootstrap.min.css')
+              ->prependStylesheet($this->basePath() . '/css/normalize.css')
+              ->prependStylesheet($this->basePath() . '/css/fonts-site.css')
+              ->prependStylesheet($this->basePath() . '/vendor/font-awesome/css/font-awesome.min.css');
+
+    echo $this->headScript()
+              ->prependFile($this->basePath() . '/js/site.js', 'text/javascript')
+              //->prependFile($this->basePath() . '/js/holder.js', 'text/javascript')
+              ->prependFile($this->basePath() . '/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js', 'text/javascript')
+              ->prependFile($this->basePath() . '/vendor/rs-plugin/js/jquery.themepunch.plugins.min.js', 'text/javascript')
+              ->prependFile($this->basePath() . '/vendor/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9'))
+              ->prependFile($this->basePath() . '/vendor/html5shiv.js', 'text/javascript', array('conditional' => 'lt IE 9'))
+              ->prependFile($this->basePath() . '/vendor/twitter-bootstrap/js/bootstrap.min.js')
+              ->prependFile($this->basePath() . '/vendor/jquery.min.js');
+?>
+</head>
+<script type="text/javascript">
+    var revapi;
+    jQuery(document).ready(function() {
+        revapi = jQuery('.tp-banner').revolution(
+            {
+                delay:9000,
+                startwidth:1170,
+                startheight:470,
+                hideThumbs:10,
+                fullWidth:"on",
+                forceFullWidth:"on",
+                navigationStyle:"square"
+
+            });
+    });	//ready
+</script>
+<body>
+    <a name="top"></a>
+    <section class="header pre-loader">
+        <div class="container">
+            <div class="row nav1">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <ul class="nav nav-pills pull-right">
+                        <li class="animated fadeIn">
+                            <a href="#">
+                                <i class="fa fa-sign-in"></i>
+                                login clientes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    </section>
+    <header class="nav2 animated fadeIn">
+        <?php echo $this->navigation('navigation_2')->menu()->setUlClass('navbar navbar-default xnavbar-fixed-top ')->setMaxDepth(1)->setPartial('partials/navigation-site.phtml'); ?>
+    </header>
+    <?php echo $this->content; ?>
+    <section class="footer">
+        <div class="container">
+            <div class="row" style="display: none;">
+                <div class="col-md-8">
+                    <h3 class="white">Últimos Tweets</h3>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white">Assine nossos boletins</h3>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Seu Nome">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Seu E-mail">
+                            <button type="submit" class="btn btn-default">OK</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="row nav3">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12 animated fadeIn">
+                            <div class="collapse navbar-collapse no-padding no-margin">
+                                <?php echo $this->navigation('navigation_2')
+                                    ->menu()
+                                    ->setUlClass('collapse navbar-collapse no-padding no-margin')
+                                    ->setMaxDepth(1)
+                                    ->setPartial('partials/navigation-site-footer.phtml');
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 animated fadeIn">
+                            <p>Copyright 2015 - Sim Tecnologia</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="collapse navbar-collapse no-padding no-margin">
+                        <ul class="nav navbar-nav social">
+                            <li><a href="https://www.facebook.com/pages/Sim-Tecnologia/149563385107393" target="_blank"><i class="fa fa-facebook-official fa-3x"></i></a></li>
+                            <li><a href="https://plus.google.com/+Simtecnologia/about" target="_blank"><i class="fa fa-google-plus-square fa-3x"></i></a></li>
+                            <li><a href="https://twitter.com/simtecnologia" target="_blank"><i class="fa fa-twitter-square fa-3x"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <?php echo $this->inlineScript(); ?>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-35796461-3', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</body>
+</html>

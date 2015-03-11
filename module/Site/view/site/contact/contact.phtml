@@ -1,0 +1,52 @@
+<?php echo $this->doctype(); ?>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style>
+
+        th, td {
+        	text-align: left;
+        	padding: 10px;
+        }
+        th {
+    	   text-align: right;
+        }
+        .title {
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        	padding: 10px;
+        }
+        .data {
+        	border-top: 1px solid #ccc;
+        	color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="title">Fale Conosco</h2>
+    <table>
+        <tr>
+            <th>Nome: </th>
+            <td><?php echo $data['Nome']; ?></td>
+        </tr>
+        <tr>
+            <th>Email: </th>
+            <td><?php echo $data['Email']; ?></td>
+        </tr>
+        <tr>
+            <th>Cidade/Estado: </th>
+            <td><?php echo $data['Cidade'] . '/' . $data['Estado']; ?></td>
+        </tr>
+        <tr>
+            <th>Telefone: </th>
+            <td><?php echo $data['Telefone']; ?></td>
+        </tr>
+        <tr>
+            <th>Mensagem: </th>
+            <td><?php echo $data['Mensagem']; ?></td>
+        </tr>
+    </table>
+    <p class="data">Mensagem enviada em: <?php echo date('d/m/Y H:i:s') ?></p>
+</body>
+</html>
+

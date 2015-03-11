@@ -1,0 +1,121 @@
+<?php
+    $this->inlineScript()->appendFile($this->basePath() . '/vendor/nailthumb/jquery.nailthumb.1.1.min.js');
+    $this->inlineScript()->captureStart();
+    echo "
+    //$('.caption img').nailthumb({height:150, method:'crop', fitDirection:'top left'});
+    ";
+    $this->inlineScript()->captureEnd();
+?>
+<!-- caroussel -->
+<?php $carousel = $this->Ads()->getListMedia(20, 1, null); ?>
+<div class="tp-banner-container">
+    <div class="tp-banner">
+        <ul>
+            <?php foreach ($carousel as $key => $img) : ?>
+                <li data-transition="zoomout" data-slotamount="7" data-masterspeed="1000" >
+                    <img src="<?php echo $img['mediaFile']; ?>"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                    <div class="tp-caption fadeout tp-resizeme rs-parallaxlevel-1"
+                         data-x="left" data-hoffset="25"
+                         data-y="center" data-voffset="100"
+                         data-speed="1000"
+                         data-start="1200"
+                         data-easing="Power4.easeOut">
+                        <?php echo $img['description']; ?>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="row body home-space home-description">
+        <div class="col-md-12 text-center animated fadeIn">
+            <h1>Somos uma fábrica especializada no desenvolvimento de soluções inteligentes!</h1>
+            <p>Todos os os sites e sistemas desenvolvidos são projetados para serem leves, intuitivos e acessíveis por qualquer computador, notebook, tablet ou smartphone. <br>
+               Conheça as nossas soluções e entre em contato conosco, nós temos uma solução sob medida para você!</p>
+        </div>
+    </div>
+    <div class="row body home-space ">
+        <div class="col-md-4 animated fadeIn">
+            <h2><i class="fa fa-laptop fa-lg"></i> Criação de Site</h2>
+            <p>Trabalhamos na concepção e no desenvolvimento de todos os tipos de sites, blogs e portais. Empregamos os melhores recursos para que o seu site seja leve, intuitivo e acessível. <a href="/solucoes">ver +</a></p>
+        </div>
+        <div class="col-md-4 animated fadeIn">
+            <h2><i class="fa fa-cogs fa-lg"></i> Soluções Customizadas</h2>
+            <p>Se você tem uma necessidade tecnologica que vai aumentar a produtividade e lhe dar maior controle da sua atividade ou negócio, desenvolvemos o que você precisa! <a href="/solucoes">ver +</a></p>
+        </div>
+        <div class="col-md-4 animated fadeIn">
+            <h2><i class="fa fa-cloud fa-lg"></i> Soluções Prontas</h2>
+            <p>Conheça o TMCar, Sistema de Gestão para Lojas de Veículos. Reune uma série de recursos para administrar o fluxo de informações da loja, com organização e controle. <a href="/solucoes">ver +</a></p>
+        </div>
+    </div>
+    <div class="row body">
+        <div class="col-md-12">
+            <h1 style="border-bottom:1px solid #f5f5f5;padding-bottom: 10px;">Projetos</h1>
+        </div>
+    </div>
+    <div class="row body">
+        <div class="col-md-4 animated fadeIn">
+            <div class="thumbnail">
+                <img src="/files/ads/pro-eletrosul.png" alt="Portal Eletrosul">
+                <div class="caption">
+                    <h2>Portal Eletrosul</h2>
+                    <p>Projeto completo: site, gerenciador de conteúdo!</p>
+                    <p><a href="http://www.eletrosul.gov.br/" target="_blank" class="btn btn-success" role="button">+ acesse</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 animated fadeIn">
+            <div class="thumbnail">
+                <img src="/files/ads/pro-brfiesc.png" alt="Bolsa de Resíduos da FIESC">
+                <div class="caption">
+                    <h2>Bolsa de Resíduos da FIESC</h2>
+                    <p>Projeto completo: site, gerenciador de conteúdo!</p>
+                    <p><a href="http://www.brfiesc.com.br" target="_blank" class="btn btn-success" role="button">+ acesse</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 animated fadeIn">
+            <div class="thumbnail">
+                <img src="/files/ads/pro-camaraitapema.png" alt="Câmara Municipal de Itapema">
+                <div class="caption">
+                    <h2>Câmara Municipal de Itapema</h2>
+                    <p>Projeto completo: site, gerenciador de conteúdo!</p>
+                    <p><a href="http://www.camaraitapema.sc.gov.br/" target="_blank" class="btn btn-success" role="button">+ acesse</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row body">
+        <div class="col-md-4 animated fadeIn">
+            <div class="thumbnail">
+                <img src="/files/ads/pro-mfmadeiras.png" alt="Madeireira Florianópolis">
+                <div class="caption">
+                    <h2>Madeireira Florianópolis</h2>
+                    <p>Projeto completo: site, gerenciador de conteúdo!</p>
+                    <p><a href="http://www.mfmadeiras.com.br/" target="_blank" class="btn btn-success" role="button">+ acesse</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 animated fadeIn">
+            <div class="thumbnail">
+                <img src="/files/ads/pro-correta.png" alt="Correta Imóveis">
+                <div class="caption">
+                    <h2>Correta Imóveis</h2>
+                    <p>Projeto completo: site, gerenciador de conteúdo!</p>
+                    <p><a href="http://www.correta.imb.br" target="_blank" class="btn btn-success" role="button">+ acesse</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 animated fadeIn">
+            <div class="thumbnail">
+                <img src="/files/ads/pro-eubiose.png" alt="Sociedade Bras. de Eubiose">
+                <div class="caption">
+                    <h2>Sociedade Brasileira de Eubiose</h2>
+                    <p>Projeto completo: site, gerenciador de conteúdo!</p>
+                    <p><a href="http://www.eubiose.com.br/" target="_blank" class="btn btn-success" role="button">+ acesse</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

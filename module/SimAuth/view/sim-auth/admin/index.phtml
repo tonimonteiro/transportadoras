@@ -1,0 +1,50 @@
+<div id="login" class="container">
+	<div class="row logo">
+		<div class="col-md-4 col-md-offset-4 center">
+			<h2>Gerenciador de Conteúdo</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+            <?php
+            $form = $this->form;
+            $form->setAttribute('action',$this->url('simauth-admin'));
+            $form->prepare();
+            ?>
+            <?php echo $this->form()->openTag($form); ?>
+            <!-- Ini:Flash Messages -->
+            <?php foreach ($this->flashMessages(true) as $namespace => $messages) : ?>
+                <?php if (count($messages)) : ?>
+                    <?php foreach ($messages as $message) : ?>
+                    <div class="alert alert-<?php echo $namespace; ?> alert-dismissible fadeOut" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+                        <p class="text-<?php echo $namespace; ?>"><?php echo $message; ?></p>
+                    </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            <!-- End:Flash Messages -->
+			<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					<?php echo $this->formRow($form->get('username')); ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+					<?php echo $this->formRow($form->get('password')); ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<input class="btn btn-primary btn-md btn-block" type="submit" value="Acessar" />
+			</div>
+			<?php echo $this->form()->closeTag(); ?>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 text-center text-muted">
+			<p>&copy; 2014 Sim Tecnologia. Todos os direitos reservados.</p>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,54 @@
+<?php
+/* @var $container Zend\Navigation\Navigation */
+$container = $this->container;
+?>
+<?php
+    $caret = false;
+    $getUlClass = explode(' ', $this->navigation()->menu()->getUlClass());
+    if (end($getUlClass) == 'icon') {
+    	$caret = true;
+    }
+?>
+<nav id="main-menu" class="<?php echo $this->navigation()->menu()->getUlClass(); ?>" role="banner">
+    <div class="container">
+        <div class="navbar-header animated fadeIn">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-logo" href="/"><img src="/img/site/logo.png"></a>
+        </div>
+        <div class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <?php foreach ($container as $page): ?>
+                    <?php if (!$this->navigation()->accept($page)) continue; ?>
+                    <?php /* @var $page Zend\Navigation\Page\Mvc */ ?>
+                    <?php $hasChildren = $page->hasPages() ?>
+                    <?php if (!$hasChildren): ?>
+                        <li <?php if ($page->isActive()) echo ' class="active"' ?>>
+                            <a class="nav-header" href="<?php echo $page->getHref() ?>" <?php if ($page->getTarget() != ""): ?> target="<?php echo $page->getTarget(); ?>" <?php endif; ?>>
+                                <?php if ($page->get("icon") !== ""): ?>
+                                    <span class="<?php echo $page->get("icon"); ?>"></span>
+                                <?php endif; ?>
+                                <?php echo $page->getLabel() ?>
+                            </a>
+                        </li>
+                    <?php else: ?>
+                        <li class="dropdown<?php if ($page->isActive(true)) echo ' active' ?>">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <?php if (! empty($page->get("icon"))): ?>
+                                    <span class="<?php echo $page->get("icon"); ?>"></span>
+                                <?php endif; ?>
+                                <?php echo $page->getLabel() ?>
+                                <?php if ($caret === true) echo '<b class="caret"></b>'; ?>
+                            </a>
+                            <?php echo $this->SubNavigation($page); ?>
+                        </li>
+                    <?php endif ?>
+                <?php endforeach ?>
+            </ul>
+        </div>
+    </div>
+</nav>

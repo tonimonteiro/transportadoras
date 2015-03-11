@@ -1,0 +1,6 @@
+<?php foreach ($element->getValueOptions() as $key => $field){
+    echo '<div class="checkbox">';
+    echo '<input type="checkbox" name="' . $element->getName() . '[]" value="' . $field['value'] . '">';
+    echo '<span>' . $field['label'] . '</span><br>';
+    echo '</div>';
+}

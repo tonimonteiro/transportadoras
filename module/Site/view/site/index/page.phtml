@@ -1,0 +1,49 @@
+<?php
+$branch = $breadcrumb;
+?>
+<section class="page-content-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <h1>
+                    <?php echo $this->data->getNavigation()->getLabel(); ?>
+                    <?php echo $this->partial('partials/breadcrumb_site.phtml', array('breadcrumb' => $breadcrumb)); ?>
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container text">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <?php if ($this->data->getVisible() == 1) : ?>
+                <h1 class="title">
+                    <?php if ($this->data->getShowDate() == 1) : ?>
+                        <small class="text-muted">
+                            <?php echo $this->dateFormat($this->data->getEntry(), IntlDateFormatter::MEDIUM, ($this->data->getShowTime() == 1 ? IntlDateFormatter::SHORT : IntlDateFormatter::NONE) , "pt_BR"); ?>
+                        </small>
+                    <?php endif; ?>
+                    <?php echo $this->data->getTitle(); ?>
+                    <span class="pull-right">
+                        <span id="lower" class="btn btn-default btn-xs">A-</span>
+                        <span id="expand" class="btn btn-default btn-xs">A+</span>
+                    </span>
+                </h1>
+            <?php endif; ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <?php echo $this->data->getContent(); ?>
+            <p class="control">
+                <a href="javascript:history.back()">
+                    <span class="glyphicon glyphicon-chevron-left"></span> voltar
+                </a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="#top">
+                    <span class="glyphicon glyphicon-chevron-up"></span> topo da página
+                </a>
+            </p>
+        </div>
+    </div>
+</div>

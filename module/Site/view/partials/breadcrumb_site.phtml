@@ -1,0 +1,13 @@
+<?php
+    $end = end($breadcrumb);
+?>
+<ol class="breadcrumb pull-right">
+    <li><a href="/">Página Inicial</a></li>
+    <?php foreach($breadcrumb as $key => $value) : ?>
+        <?php if ($end['uri'] == $value['uri']): ?>
+        <li class="active"><?php echo $value['label'] ?></li>
+        <?php else : ?>
+        <li><a href="<?php echo $value['uri']; ?>"><?php echo $value['label'] ?></a></li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</ol>

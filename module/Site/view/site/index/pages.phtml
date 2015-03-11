@@ -1,0 +1,76 @@
+                <div class="row">
+                    <?php
+                        $img100 = $this->Ads()->getListMedia(10, 4, null);
+                        $img100 = $img100[0];
+                    ?>
+                    <img src="<?php echo $img100['mediaFile']; ?>" class="img-responsive img100" alt="<?php echo $img100['name']; ?>">
+                </div>
+                <?php
+                    $branch = $breadcrumb;
+                    $colMd  = '12';
+                ?>
+                <div class="row content">
+                    <?php if (! empty($nameGroup)) : ?>
+                        <div class="col-md-3 nav4">
+                            <?php
+                            $colMd = '9';
+                            $branchActive = array_shift($branch);
+                            $nav4 = $this->navigation($nameGroup)->findOneByLabel($branchActive['label']);
+                            echo $this->navigation()->menu()->setUlClass('nav nav-pills nav-stacked icon')->renderPartial($nav4, 'partials/navigation-site-side.phtml');
+                            ?>
+                        </div>
+                    <?php endif; ?>
+                    <div class="col-md-<?php echo $colMd; ?>">
+                        <div class="row">
+                        <?php echo $this->partial('partials/breadcrumb_site.phtml', array('breadcrumb' => $breadcrumb));?>
+                        </div>
+                        <div class="row">
+                            <h1 class="title">
+                                <?php echo $this->data->getCurrentItems()[0]->getNavigation()->getLabel(); ?>
+                                <!--
+                                <span class="pull-right">
+                                    <span class="btn btn-primary btn-xs">A-</span>
+                                    <span class="btn btn-primary btn-xs">A+</span>
+                                </span>
+                                -->
+                            </h1>
+                        </div>
+                        <div class="row">
+                            <?php $loop = 1; ?>
+                            <?php foreach($this->data as $content) : ?>
+                                <?php if ($loop == 1): ?>
+                                <div class="row content-list">
+                                <?php endif; ?>
+                                <div class="col-md-12">
+                                    <div class="thumbnail">
+                                        <div class="caption">
+                                            <?php if ($content->getShowDate() == 1) : ?>
+                                            <span class="label label-default date">
+                                                <?php
+                                                echo $this->dateFormat($content->getEntry(), IntlDateFormatter::MEDIUM, ($content->getShowTime() == 1 ? IntlDateFormatter::SHORT : IntlDateFormatter::NONE) , "pt_BR");
+                                                ?>
+                                            </span>
+                                            <?php endif; ?>
+                                            <h3><?php echo $content->getTitle(); ?></h3>
+                                            <p><?php echo $content->getDescription(); ?></p>
+                                            <a href="<?php echo $content->getUrl(); ?>" class="btn btn-primary btn-xs" role="button">leia mais</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php if ($loop == 3): ?>
+                                </div>
+                                <?php $loop = 1; ?>
+                                <?php else: ?>
+                                <?php $loop++; ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </div>
+                         <?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator-site-query'); ?>
+                        <p class="page-top">
+                            <a href="#top">
+                                <span class="glyphicon glyphicon-chevron-up"></span> topo da página
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>

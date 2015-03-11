@@ -1,0 +1,17 @@
+<?php
+
+$totalItemCount = $this->data->getTotalItemCount();
+$currentItemCount = $this->data->getCurrentItemCount();
+$currentPageNumber = $this->data->getCurrentPageNumber();
+$firstItemCurrent = ($this->data->getItemCountPerPage()*($currentPageNumber-1));
+
+if ($totalItemCount == 0) {
+	'Nenhum registro.';
+} else {
+    echo 'Exibindo de ' . ($firstItemCurrent+1) . '  a ' . ($firstItemCurrent+$currentItemCount) . ' de ' . $totalItemCount;
+	if ($totalItemCount == 1) {
+		echo ' registro.';
+	} else {
+		echo ' registros.';
+	}
+}
