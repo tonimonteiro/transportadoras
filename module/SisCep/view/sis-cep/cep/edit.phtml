@@ -1,0 +1,57 @@
+<?php
+$routeName = $this->RouteMatch()->getRouteName();
+$controllerName = $this->RouteMatch()->getControllerName();
+?>
+<div class="row">
+    <div class="col-md-10">
+        <div class="box">
+            <div class="box-body">
+                <?php
+                $form = $this->form;
+                $form->setAttribute('action',$this->url($routeName, array('controller' => $controllerName, 'action' => 'new')));
+                $form->prepare();
+                ?>
+                <?php echo $this->form()->openTag($form); ?>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <?php echo $this->formRow($form->get('transportadora')); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-3 col-md-3">
+                        <div class="form-group">
+                            <?php echo $this->formRow($form->get('cepInicial')); ?>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3">
+                        <div class="form-group">
+                            <?php echo $this->formRow($form->get('cepFinal')); ?>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3">
+                        <div class="form-group">
+                            <?php echo $this->formRow($form->get('peso')); ?>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3">
+                        <div class="form-group">
+                            <?php echo $this->formRow($form->get('valor')); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <?php echo $this->formRow($form->get('security')); ?>
+                            <?php echo $this->formRow($form->get('id')); ?>
+                            <?php echo $this->formRow($form->get('save')->setAttributes(array('class'=>'btn btn-success btn-sm'))); ?>
+                        </div>
+                    </div>
+                </div>
+                <?php echo $this->form()->closeTag(); ?>
+            </div>
+        </div>
+    </div>
+</div>
