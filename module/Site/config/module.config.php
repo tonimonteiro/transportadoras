@@ -4,59 +4,20 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Site\Controller\Index' => 'Site\Controller\IndexController',
-            'Site\Controller\Contact' => 'Site\Controller\ContactController',
         ),
     ),
     'module_layouts' => array(
+        'SisCep' => 'layout/application.phtml',
+        'SisTransportadora' => 'layout/application.phtml',
         'SimUser' => 'layout/application.phtml',
-        'SimAds' => 'layout/application.phtml',
         'SimNavigation' => 'layout/application.phtml',
         'SimAuth' => 'layout/simauth.phtml',
         'SimAcl' => 'layout/application.phtml',
-        'SimCms' => 'layout/application.phtml',
         'Application' => 'layout/application.phtml',
         'Site' => 'layout/site.phtml',
     ),
     'router' => array(
         'routes' => array(
-            'site-map' => array(
-                'type'    => 'Literal',
-                'options' => array(
-                    'route'    => '/mapa-do-site',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Site\Controller',
-                        'controller'    => 'Index',
-                        'action'        => 'site-map',
-                    ),
-                ),
-            ),
-            // contact
-            'contact' => array(
-                'type' => 'Literal',
-                'options' => array(
-                    'route' => '/contato',
-                    'defaults' => array(
-                        'controller' => 'Site\Controller\Contact',
-                        'action'     => 'index',
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type' => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:action]',
-                            'constraints' => array(
-                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                                'controller' => 'Site\Controller\Contact',
-                                'action' => 'index',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
             // search
             'search' => array(
                 'type' => 'Literal',
@@ -83,10 +44,6 @@ return array(
                         )
                     ),
                 ),
-            ),
-            // page route
-            'pageRoute' => array(
-                'type' => 'pageRoute',
             ),
             'site' => array(
                 'type'    => 'Literal',

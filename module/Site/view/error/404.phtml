@@ -1,21 +1,34 @@
-<div class="row">
-    <?php
-        $img100 = $this->Ads()->getListMedia(10, 4, null);
-        $img100 = $img100[0];
-    ?>
-    <img src="<?php echo $img100['mediaFile']; ?>" class="img-responsive img100" alt="<?php echo $img100['name']; ?>">
-</div>
-<div class="row content">
-    <div class="col-md-12">
+<section class="page-content-header">
+    <div class="container">
         <div class="row">
-            <h1 class="title">
-                Erro 404
-            </h1>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <h1>
+                    Ops!
+                </h1>
+            </div>
         </div>
-        <div class="row content-text" style="min-height: 500px;">
+    </div>
+</section>
+<div class="container text">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+                <h1 class="title">
+                    Erro 404
+                </h1>
+        </div>
+    </div>
+    <div class="row content-text">
+        <div class="col-xs-12 col-sm-12 col-md-12">
             <h3>Erro 404: Página não encontrada!</h3>
-            <br><br>
-            <p><a href="/">Página Inicial</a></p>
+            <p class="control">
+                <a href="javascript:history.back()">
+                    <span class="glyphicon glyphicon-chevron-left"></span> voltar
+                </a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="#top">
+                    <span class="glyphicon glyphicon-chevron-up"></span> topo da página
+                </a>
+            </p>
         </div>
     </div>
 </div>

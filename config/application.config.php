@@ -1,18 +1,17 @@
 <?php
 return array(
     'modules' => array(
-//         'ZendDeveloperTools',
-//         'BjyProfiler',
+        //'ZendDeveloperTools',
+        //'BjyProfiler',
         'DoctrineModule',
         'DoctrineORMModule',
-        'DoctrineDataFixtureModule',
+        //'DoctrineDataFixtureModule',
         'SimBase',
         'SimUser',
-        'SimAds',
-        'SimCms',
+        'SisTransportadora',
+        'SisCep',
         'SimNavigation',
         'SimAcl',
-        'SimCep',
         'Application',
         'SimAuth',
         'Site',

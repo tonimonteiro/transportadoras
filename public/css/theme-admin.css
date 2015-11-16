@@ -1,6 +1,6 @@
 html,body {
 	overflow-x: hidden !important;
-    font-family: 'robotoregular';
+    font-family: arial;
 	font-size: 12px;
 	-webkit-font-smoothing: antialiased;
 	min-height: 100%;
@@ -1043,7 +1043,6 @@ body>.header .logo .icon {
 /* 	border-radius: 0px !important; */
 /* 	box-shadow: none; */
 	font-size:12px;
-    font-family: 'robotoregular';
 }
 
 .form-control:focus {
@@ -1103,7 +1102,7 @@ body>.header .logo .icon {
 	margin-top: 0px;
     margin-bottom: 0px;
 	font-size: 12px;
-    font-family: 'robotoregular';
+
 }
 /* button groups */
 .btn-group-vertical .btn.btn-flat:first-of-type,.btn-group-vertical .btn.btn-flat:last-of-type
@@ -1451,7 +1450,6 @@ body>.header .logo .icon {
 }
 
 .box-title {
-    font-family: 'robotoregular';
 	font-size: 18px !important;
 	color: #00A65A;
 }

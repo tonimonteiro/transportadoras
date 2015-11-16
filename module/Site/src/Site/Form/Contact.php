@@ -172,7 +172,7 @@ class Contact extends Form implements ObjectManagerAwareInterface, InputFilterPr
             'name' => 'send',
             'type' => 'Zend\Form\Element\Submit',
             'attributes' => array(
-                'class' => 'btn btn-green btn-sm',
+                'class' => 'btn btn-success',
                 'style' => 'display:block',
                 'value' => 'Enviar Mensagem'
             )

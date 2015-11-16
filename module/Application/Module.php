@@ -8,8 +8,8 @@ use Zend\Authentication\Storage\Session as SessionStorage;
 use Zend\ModuleManager\ModuleManager;
 use Zend\Session\SessionManager;
 use Zend\Session\Container;
-use SimCms\View\Helper\Content;
-use SimAds\View\Helper\Ads;
+//use SisTransportadora\View\Helper\Transportadora;
+//use SisCep\View\Helper\Cep;
 use SimBase\View\Helper\RouteMatch;
 
 class Module
@@ -166,9 +166,6 @@ class Module
     public function getViewHelperConfig()
     {
         return array(
-            'invokables' => array(
-                'CnpjFormat' => new \SimBase\View\Helper\CnpjFormat()
-            ),
             'factories' => array(
                 'flashMessages' => function ($serviceManager)
                 {
@@ -186,16 +183,18 @@ class Module
                     $helper = new \SimBase\View\Helper\Config($serviceManager);
                     return $helper;
                 },
-                'Content' => function ($pluginManager)
+                /*
+                'Transportadora' => function ($pluginManager)
                 {
                     $serviceLocator = $pluginManager->getServiceLocator();
-                    return new Content($serviceLocator);
+                    return new Transportadora($serviceLocator);
                 },
-                'Ads' => function ($pluginManager)
+                'Cep' => function ($pluginManager)
                 {
                     $serviceLocator = $pluginManager->getServiceLocator();
-                    return new Ads($serviceLocator);
+                    return new Cep($serviceLocator);
                 },
+                */
                 'DataGridSort' => function ($serviceManager)
                 {
                     $mvcEvent = $serviceManager->getServiceLocator()->get('application')->getMvcEvent();

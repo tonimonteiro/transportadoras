@@ -1,40 +1,29 @@
 <?php
-    $this->inlineScript()->appendFile($this->basePath() . '/js/form/fieldset.js')
-                         ->appendFile($this->basePath() . '/js/site.js');
+//echo $this->inlineScript()->appendFile('https://www.google.com/recaptcha/api.js');
+$branch = $breadcrumb;
 ?>
-
-<div class="row">
-    <?php
-        $img100 = $this->Ads()->getListMedia(10, 4, null);
-        $img100 = $img100[0];
-    ?>
-    <img src="<?php echo $img100['mediaFile']; ?>" class="img-responsive img100" alt="<?php echo $img100['name']; ?>">
-</div>
-<?php
-    $branch = $breadcrumb;
-    $colMd  = '12';
-?>
-<div class="row content">
-    <?php if (! empty($nameGroup)) : ?>
-        <div class="col-md-3 nav4">
-            <?php
-            $colMd = '9';
-            $branchActive = array_shift($branch);
-            $nav4 = $this->navigation($nameGroup)->findOneByLabel($branchActive['label']);
-            echo $this->navigation()->menu()->setUlClass('nav nav-pills nav-stacked icon')->renderPartial($nav4, 'partials/navigation-site-side.phtml');
-            ?>
-        </div>
-    <?php endif; ?>
-    <div class="col-md-<?php echo $colMd; ?>">
+<section class="page-content-header">
+    <div class="container">
         <div class="row">
-        <?php echo $this->partial('partials/breadcrumb_site.phtml', array('breadcrumb' => $breadcrumb));?>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <h1>
+                    <?php echo $pageName; ?>
+                    <?php echo $this->partial('partials/breadcrumb_site.phtml', array('breadcrumb' => $breadcrumb)); ?>
+                </h1>
+            </div>
         </div>
-        <div class="row">
-            <h1 class="title">
-                <?php echo $pageName; ?>
-            </h1>
+    </div>
+</section>
+<div class="container text">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+                <h1 class="title">
+                    Entre em Contato
+                </h1>
         </div>
-        <div class="row content-text">
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-8">
             <?php if ($form != '' ) : ?>
             <?php
             $form = $this->form;
@@ -89,17 +78,25 @@
             <?php echo $this->form()->closeTag(); ?>
             <?php else : ?>
             <p><strong>Sua mensagem foi enviada com sucesso!</strong></p>
-            <p>Nossa atendimento entrará em contato em breve!</p>
+            <p>Entraremos em contato em breve!</p>
                 <br>
                 <br>
                 <br>
                 <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+            <?php endif; ?>
+            <p class="control">
+                <a href="javascript:history.back()">
+                    <span class="glyphicon glyphicon-chevron-left"></span> voltar
+                </a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="#top">
+                    <span class="glyphicon glyphicon-chevron-up"></span> topo da página
+                </a>
+            </p>
+        </div>
+        <div>
+            <?php if (!empty($content)) : ?>
+            <?php echo $content->getContent(); ?>
             <?php endif; ?>
         </div>
     </div>

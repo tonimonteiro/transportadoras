@@ -17,9 +17,7 @@ class ContactController extends AbstractActionController
     private $pageName;
 
     /**
-     * Gets the $pageName.
-     *
-     * @return field_type
+     * @return string
      */
     public function getPageName()
     {
@@ -27,9 +25,8 @@ class ContactController extends AbstractActionController
     }
 
     /**
-     * Sets the $pageName.
-     *
-     * @param field_type $pageName
+     * @param $pageName
+     * @return $this
      */
     public function setPageName($pageName)
     {
@@ -37,15 +34,21 @@ class ContactController extends AbstractActionController
         return $this;
     }
 
+    /**
+     * @return \Zend\Http\Response|ViewModel
+     */
 	public function indexAction()
     {
         // getting request.
+        // getting request.
         $request = $this->getRequest();
         $path = $request->getUri()->getPath();
+        $pathSearch = str_replace("/", "", str_replace("-", "", $path));
 
         // getting entities.
         $entityManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $page = $entityManager->getRepository('SimNavigation\Entity\Navigation')->findOneByUri($path);
+        $content = $entityManager->getRepository('SimCms\Entity\Cms')->findOneByNavigationName($pathSearch);
 
         // breadcrumb
         $path = $this->Path($page);
@@ -104,7 +107,7 @@ class ContactController extends AbstractActionController
 
                 $mail = new Message();
                 $mail->addReplyTo($data['Email'], $data['Nome']);
-                $mail->setFrom($configFrom, 'Eletrosul');
+                $mail->setFrom($configFrom, 'Sim Tecnologia');
                 $mail->addTo($configTo);
                 $mail->setSubject('Fale Conosco' . ($data['Assunto'] ? ': ' . $data['Assunto'] : ''));
                 $mail->setEncoding('UTF-8');
@@ -116,7 +119,7 @@ class ContactController extends AbstractActionController
                 $transport = $this->getServiceLocator()->get('Site\Mail\Transport');
                 $transport->send($mail);
 
-                return $this->redirect()->toUrl('/fale-conosco?send=1');
+                return $this->redirect()->toUrl('/contato?send=1');
             }
         }
 
@@ -125,8 +128,8 @@ class ContactController extends AbstractActionController
             'pageName' => $this->getPageName(),
             'form' => $form,
             'breadcrumb' => $path['breadcrumb'],
-            'nameGroup' => $nameGroup
-
+            'nameGroup' => $nameGroup,
+            'content' => $content
         ));
 
         return $view;

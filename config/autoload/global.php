@@ -23,25 +23,18 @@ $params['route'] = array(
         'site',
         'simauth-admin',
         'simauth-logout',
-        'contact',
-        'contact/default',
         'search',
         'search/paginator-site',
-        'site-map',
-        'pageRoute'
     ),
 );
 
 $params['navigation'] = array(
     'navigation_admin' => 'Módulos do Sistema',
-    'navigation_1' => 'Lista 1 - Menu Topo',
-    'navigation_2' => 'Lista 2 - Menu Principal',
-    'navigation_3' => 'Lista 3 - Sem Menu',
 );
 
 $params['sn'] = array(
-        '1' => 'Sim',
-        '2' => 'Não',
+    '2' => 'Não',
+    '1' => 'Sim',
 );
 
 $params['situacao'] = array(
@@ -49,31 +42,10 @@ $params['situacao'] = array(
     '2' => 'Inativo',
 );
 
-$params['cms'] = array(
-    'access' => array(
-        '1' => 'Público',
-        '2' => 'Restrito',
-    ),
-);
-
-$params['ckeditor']['kcfinder'] = array(
-    'disabled' => false,
-    '_check4htaccess' => false,
-    'uploadURL' => 'http://' . $_SERVER["HTTP_HOST"] . '/files/',
-    'uploadDir' => dirname(dirname(dirname(__FILE__))) . '/public/files/',
-    'theme' => 'default'
-);
-
 /**
  * Return values of the configuration.
  */
 return array(
-    'configuration' => array(
-        'contact' => array(
-            'to' => 'contato@simtecnologia.com',
-            'from' => 'contato@simtecnologia.com',
-        ),
-    ),
     'params' => $params,
     'doctrine' => array(
         'connection' => array(
@@ -82,28 +54,15 @@ return array(
                 'params' => array(
                     'host' => 'localhost',
                     'port' => '3306',
-                    'user' => 'simtecno_site',
-                    'password' => 'WHpen5xJhow2',
-                    'dbname' => 'simtecno_site',
+                    'user' => '',
+                    'password' => '',
+                    'dbname' => '',
                     'driverOptions' => array(
                         1002 => "SET NAMES 'UTF8'"
                     )
                 )
             )
         )
-    ),
-    'mail' => array(
-        'name' => '',
-        'host' => 'smtp.googlemail.com',
-        'port' => 25,
-        /*
-        'connection_class' => 'login',
-        'connection_config' => array(
-            'username' => 'ouvidoria@eletrosul.gov.br',
-            'password' => '',
-            'ssl' => 'tls',
-        )
-        */
     ),
     'service_manager' => array(
         'factories' => array()
@@ -112,7 +71,7 @@ return array(
         'config' => array(
             'class' => 'Zend\Session\Config\SessionConfig',
             'options' => array(
-                'name' => 'eletrosul',
+                'name' => 'myapp',
             ),
         ),
         'storage' => 'Zend\Session\Storage\SessionArrayStorage',

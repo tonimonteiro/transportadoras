@@ -101,8 +101,6 @@ class Module implements AutoloaderProviderInterface
             ),
             'invokables' => array (
                 'SubstrText' => new \SimBase\View\Helper\SubstrText(),
-                'CnpjFormat' => new \SimBase\View\Helper\CnpjFormat(),
-                'SubNavigation' => new \SimNavigation\View\Helper\SubNavigation(),
             ),
         );
     }
@@ -111,22 +109,9 @@ class Module implements AutoloaderProviderInterface
     {
         return array(
             'factories' => array(
-                'navigation_1' => 'SimNavigation\Navigation\SiteNavigation1Factory',
-                'navigation_2' => 'SimNavigation\Navigation\SiteNavigation2Factory',
-                'navigation_3' => 'SimNavigation\Navigation\SiteNavigation3Factory',
                 'Site\Service\Site' => function ($sm)
                 {
                     return new Service\Site($sm->get('Doctrine\ORM\Entitymanager'));
-                },
-                'Site\Mail\Transport' => function($sm) {
-                    $config = $sm->get('config');
-
-                    $options = new SmtpOptions($config['mail']);
-
-                    $transport = new SmtpTransport;
-                    $transport->setOptions($options);
-
-                    return $transport;
                 },
                 'Session' => function($sm) {
                     $config = $sm->get('config');
