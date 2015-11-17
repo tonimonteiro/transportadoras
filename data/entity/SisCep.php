@@ -38,9 +38,16 @@ class SisCep
     /**
      * @var integer
      *
-     * @ORM\Column(name="peso", type="integer", nullable=true)
+     * @ORM\Column(name="peso_a", type="integer", nullable=true)
      */
-    private $peso;
+    private $pesoA;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="peso_z", type="integer", nullable=true)
+     */
+    private $pesoZ;
 
     /**
      * @var string

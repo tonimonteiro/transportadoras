@@ -32,10 +32,17 @@ $controllerName = $this->RouteMatch()->getControllerName();
                     </div>
                     <div class="col-xs-12 col-sm-3 col-md-3">
                         <div class="form-group">
-                            <?php echo $this->formRow($form->get('peso')); ?>
+                            <?php echo $this->formRow($form->get('pesoA')); ?>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-3 col-md-3">
+                        <div class="form-group">
+                            <?php echo $this->formRow($form->get('pesoZ')); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <?php echo $this->formRow($form->get('valor')); ?>
                         </div>

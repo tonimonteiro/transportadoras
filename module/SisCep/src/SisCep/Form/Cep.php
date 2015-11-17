@@ -131,18 +131,34 @@ class Cep extends Form implements ServiceLocatorAwareInterface, InputFilterProvi
         ));
 
         $this->add(array(
-            'name' => 'peso',
+            'name' => 'pesoA',
             'type' => 'Zend\Form\Element\Number',
             'attributes' => array(
                 'class' => 'form-control',
-                'id' => 'peso',
+                'id' => 'pesoA',
                 'required' => 'required'
             ),
             'options' => array(
                 'label_attributes' => array(
                     'class' => 'control-label required'
                 ),
-                'label' => 'Peso (Kg)'
+                'label' => 'Peso inicial (Kg)'
+            )
+        ));
+
+        $this->add(array(
+            'name' => 'pesoZ',
+            'type' => 'Zend\Form\Element\Number',
+            'attributes' => array(
+                'class' => 'form-control',
+                'id' => 'pesoZ',
+                'required' => 'required'
+            ),
+            'options' => array(
+                'label_attributes' => array(
+                    'class' => 'control-label required'
+                ),
+                'label' => 'Peso Final (Kg)'
             )
         ));
 

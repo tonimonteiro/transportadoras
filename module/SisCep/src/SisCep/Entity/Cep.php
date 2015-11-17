@@ -40,9 +40,16 @@ class Cep extends AbstractEntity
     /**
      * @var integer
      *
-     * @ORM\Column(name="peso", type="integer", nullable=true)
+     * @ORM\Column(name="peso_a", type="integer", nullable=true)
      */
-    private $peso;
+    private $pesoA;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="peso_z", type="integer", nullable=true)
+     */
+    private $pesoZ;
 
     /**
      * @var string
@@ -118,17 +125,33 @@ class Cep extends AbstractEntity
     /**
      * @return int
      */
-    public function getPeso()
+    public function getPesoA()
     {
-        return $this->peso;
+        return $this->pesoA;
     }
 
     /**
-     * @param int $peso
+     * @param int $pesoA
      */
-    public function setPeso($peso)
+    public function setPesoA($pesoA)
     {
-        $this->peso = $peso;
+        $this->pesoA = $pesoA;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPesoZ()
+    {
+        return $this->pesoZ;
+    }
+
+    /**
+     * @param int $pesoZ
+     */
+    public function setPesoZ($pesoZ)
+    {
+        $this->pesoZ = $pesoZ;
     }
 
     /**

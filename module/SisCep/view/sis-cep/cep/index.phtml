@@ -63,7 +63,7 @@ $controllerName = $this->RouteMatch()->getControllerName();
                         </td>
                         <td><?php echo $entity->getCepInicial(); ?></td>
                         <td><?php echo $entity->getCepFinal(); ?></td>
-                        <td><?php echo $entity->getPeso(); ?></td>
+                        <td>De <?php echo $entity->getPesoA(); ?> a <?php echo $entity->getPesoZ(); ?></td>
                         <td><?php echo $entity->getValor(); ?></td>
                     </tr>
                     <?php endforeach; ?>

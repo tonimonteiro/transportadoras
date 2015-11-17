@@ -55,7 +55,22 @@ class CepFilter extends InputFilter
         ));
 
         $this->add(array(
-            'name' => 'peso',
+            'name' => 'pesoA',
+            'required' => true,
+            'filters' => array(
+                array('name' => 'StripTags'),
+                array('name' => 'StringTrim'),
+            ),
+            'validators' => array(
+                array(
+                    'name' => 'greaterThan',
+                    'options' => array('min' => 0)
+                )
+            )
+        ));
+
+        $this->add(array(
+            'name' => 'pesoZ',
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),
